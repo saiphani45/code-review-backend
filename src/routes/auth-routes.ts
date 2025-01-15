@@ -12,6 +12,7 @@ interface AuthRequest extends express.Request {
   };
 }
 
+// this endpoint creates user, if user exists it returns the jwt token of the user 
 router.post("/github", async (req, res) => {
   try {
     const { github_id, username, email, access_token } = req.body;
@@ -41,7 +42,7 @@ router.post("/github", async (req, res) => {
   }
 });
 
-// Fixed route handler with proper type annotations
+// fetches the user info 
 router.get(
   "/user",
   authMiddleware,

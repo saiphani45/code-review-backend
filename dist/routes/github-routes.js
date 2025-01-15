@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const github_controller_1 = require("../controllers/github-controller");
+const middleware_1 = require("../middleware/middleware");
+const router = (0, express_1.Router)();
+const githubController = new github_controller_1.GitHubController();
+router.get("/repositories", middleware_1.authMiddleware, githubController.getRepositories);
+router.get("/repos/:owner/:repo/pulls", middleware_1.authMiddleware, githubController.getPullRequests);
+exports.default = router;

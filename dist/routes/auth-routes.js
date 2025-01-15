@@ -8,6 +8,7 @@ const middleware_1 = require("../middleware/middleware");
 const user_model_1 = __importDefault(require("../models/user-model"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const router = express_1.default.Router();
+// this endpoint creates user, if user exists it returns the jwt token of the user 
 router.post("/github", async (req, res) => {
     try {
         const { github_id, username, email, access_token } = req.body;
@@ -34,7 +35,7 @@ router.post("/github", async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
-// Fixed route handler with proper type annotations
+// fetches the user info 
 router.get("/user", middleware_1.authMiddleware, async (req, res) => {
     var _a;
     try {

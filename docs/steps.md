@@ -1,0 +1,5 @@
+- Github 0auth steps
+    - checkout to github website
+    - Go to GitHub Settings > Developer settings > OAuth Apps > New OAuth App
+    - create a new 0auth app with the needed inputs
+    - generate your clientId and clientsecret
