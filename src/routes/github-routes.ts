@@ -11,5 +11,29 @@ router.get(
   authMiddleware,
   githubController.getPullRequests
 );
+router.get(
+  "/repos/:owner/:repo/pulls/:pull_number/files",
+  authMiddleware,
+  githubController.getPullRequestFiles
+);
+
+
+router.get(
+  "/repos/:owner/:repo/pulls/:pull_number/comments",
+  authMiddleware,
+  githubController.getPullRequestComments
+);
+
+router.post(
+  "/repos/:owner/:repo/pulls/:pull_number/comments",
+  authMiddleware,
+  githubController.createPullRequestComment
+);
+
+router.post(
+  "/repos/:owner/:repo/pulls/:pull_number/reviews",
+  authMiddleware,
+  githubController.submitPullRequestReview
+);
 
 export default router;
