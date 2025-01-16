@@ -44,6 +44,7 @@ export class CodeAnalysisService {
   }
 
   private async getAiSuggestions(code: string) {
+    console.log("code", code);
     try {
       const prompt = `Analyze this code and suggest improvements:
         ${code}
@@ -63,6 +64,8 @@ export class CodeAnalysisService {
           top_p: 0.95,
         },
       });
+
+      console.log("analysis", analysis);
 
       return this.parseAiResponse(analysis.generated_text);
     } catch (error) {
