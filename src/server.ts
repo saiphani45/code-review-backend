@@ -3,9 +3,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
-import authRoutes from "./routes/auth-routes";
-import connectDB from "./config/database";
-import gitHubRoutes from "./routes/github-routes";
+import authRoutes from "./routes/auth-routes.js";
+import connectDB from "./config/database.js";
+import gitHubRoutes from "./routes/github-routes.js";
 
 const app = express();
 

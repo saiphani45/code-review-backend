@@ -39,6 +39,19 @@ export class GitHubService {
       throw error;
     }
   }
+  async getRepoPullRequest(owner: string, repo: string, pullNumber: number) {
+    try {
+      const { data } = await this.octokit.pulls.get({
+        owner,
+        repo,
+        pull_number: pullNumber,
+      });
+      return data;
+    } catch (error) {
+      console.error("Error fetching pull request:", error);
+      throw error;
+    }
+  }
 
   async getPullRequestFiles(owner: string, repo: string, pullNumber: number) {
     try {
