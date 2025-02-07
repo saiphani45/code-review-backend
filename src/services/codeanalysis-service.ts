@@ -84,7 +84,7 @@ export class CodeAnalysisService {
 
       try {
         const response = await this.hf.textGeneration({
-          model: "gpt2",
+          model: "DeepSeek-R1",
           inputs: prompt,
           parameters: {
             max_new_tokens: 1500,
