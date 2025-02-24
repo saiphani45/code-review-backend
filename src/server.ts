@@ -3,9 +3,10 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
-import authRoutes from "./routes/auth-routes";
-import connectDB from "./config/database";
-import gitHubRoutes from "./routes/github-routes";
+import authRoutes from "./routes/auth-routes.js";
+import connectDB from "./config/database.js";
+import gitHubRoutes from "./routes/github-routes.js";
+import analysisRoutes from "./routes/analysis-routes.js";
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(limiter);
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/github", gitHubRoutes);
+app.use("/api/analysis", analysisRoutes);
 
 // Error handling middleware
 app.use(

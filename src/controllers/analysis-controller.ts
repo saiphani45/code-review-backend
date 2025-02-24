@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { CodeAnalysisService } from "../services/codeanalysis-service";
+import { CodeAnalysisService } from "../services/codeanalysis-service.js";
 
 export class AnalysisController {
   private analysisService: CodeAnalysisService;

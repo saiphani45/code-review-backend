@@ -11,7 +11,9 @@ export const authMiddleware = async (
   next: NextFunction
 ): Promise<void> => {
   try {
+    console.log("hi")
     const token = req.header("Authorization")?.replace("Bearer ", "");
+    console.log("token", token);
 
     if (!token) {
       throw new Error("No authentication token provided");

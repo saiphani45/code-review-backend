@@ -1,5 +1,4 @@
-// @octokit/rest, passport-github2, and passport are libraries that allow you to authenticate users with GitHub
-import { Octokit } from "@octokit/rest";
+import { Octokit } from "@octokit/rest"; // @octokit/rest, passport-github2, and passport are libraries that allow you to authenticate users with GitHub
 
 export class GitHubService {
   private octokit: Octokit;
@@ -40,6 +39,19 @@ export class GitHubService {
       throw error;
     }
   }
+  async getRepoPullRequest(owner: string, repo: string, pullNumber: number) {
+    try {
+      const { data } = await this.octokit.pulls.get({
+        owner,
+        repo,
+        pull_number: pullNumber,
+      });
+      return data;
+    } catch (error) {
+      console.error("Error fetching pull request:", error);
+      throw error;
+    }
+  }
 
   async getPullRequestFiles(owner: string, repo: string, pullNumber: number) {
     try {
@@ -53,5 +65,55 @@ export class GitHubService {
       console.error("Error fetching PR files:", error);
       throw error;
     }
+  }
+
+  async getPullRequestComments(
+    owner: string,
+    repo: string,
+    pullNumber: number
+  ) {
+    const { data } = await this.octokit.pulls.listReviewComments({
+      owner,
+      repo,
+      pull_number: pullNumber,
+    });
+    return data;
+  }
+
+  async createPullRequestComment(
+    owner: string,
+    repo: string,
+    pullNumber: number,
+    params: {
+      body: string;
+      path?: string;
+      line?: number;
+      position?: number;
+    }
+  ) {
+    const { data } = await this.octokit.pulls.createReviewComment({
+      owner,
+      repo,
+      pull_number: pullNumber,
+      ...params,
+    });
+    return data;
+  }
+
+  async submitPullRequestReview(
+    owner: string,
+    repo: string,
+    pullNumber: number,
+    event: string,
+    body?: string
+  ) {
+    const { data } = await this.octokit.pulls.createReview({
+      owner,
+      repo,
+      pull_number: pullNumber,
+      event,
+      body,
+    });
+    return data;
   }
 }
